@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/sticky-footer-navbar.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Ladda/1.0.6/ladda-themeless.min.css" integrity="sha256-4E9F1QhvHIiZ9l+3Dev+wZFyP3GQJXmXqR+TY0hJNDM=" crossorigin="anonymous" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js" integrity="sha256-Kr5Mbwq/xwJYw6XU4NR519/iosGvECYMyMU8IZ/rQok=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Ladda/1.0.6/spin.min.js" integrity="sha256-oNtUmAZAsXy3Pg53xwfYE1YYgfdktOImDPd57g6Ldek=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Ladda/1.0.6/ladda.min.js" integrity="sha256-xqr6dAl11yzo9ssVFuVopsFNB/WWyFPb9sNOolhq43Q=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.19.2/URI.min.js" integrity="sha256-4G6Z1Q3FCGF8hoYV4zb54OENwcZkuE0NnvblFsJTg7s=" crossorigin="anonymous"></script>
+
+  <script src="libraries/csl-validator.js"></script>
+  <style>
+    #source-code {
+      height: 400px;
+    }
+
+    li.inserted {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+
+    nav {
+      background-color: #2D98E0;
+    }
+
+    .btn {
+      white-space: nowrap;
+    }
+  </style>
+  <!--
+  <link rel="icon" type="image/png" href="images/favicon-32x32.png">
+-->
+  <title>EAS Validator</title>
+</head>
+
+<body class="d-flex flex-column h-100">
+  <header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark">
+      <a href="index.html"><span>EAS Validation Testing Tool</span></a>
+    </nav>
+  </header>
+
+  <!-- Begin page content -->
+  <main role="main" class="flex-shrink-0">
+    <div class="container-fluid">
+      <form autocomplete="off">
+        <div class="form-group row my-3" title="The version of the CSL schema to validate against.">
+          <label for="schema-version" class="col-sm-2 col-form-label text-right">Select the schema version</label>
+          <div class="col-auto">
+            <select class="form-control" id="schema-version">
+              <option value="2.0" selected>EAC-CPF 2.0 (draft)</option>
+              <option value="1.1">EAC-CPF 1.1 (2018)</option>
+              <option value="1.0">EAC-CPF 1.0 (2010)</option>
+              <option value="EAD3">EAD3 1.1.1</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row my-3" title="The CSL document to validate.">
+          <div class="col-sm-2">
+            <div class="container">
+              <div class="row justify-content-end">
+                <div class="col-auto">
+                  <select class="form-control" id="source-method">
+                    <option value="url" selected>URL</option>
+                    <option value="file-upload">File Upload</option>
+                    <option value="textarea">Text Field</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-9">
+            <input id="source-url" type="url" class="form-control source-input">
+          </div>
+        </div>
+        <div class="form-group row my-3" title="Click to validate">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-9">
+            <button id="validate" type="button" class="btn btn-primary btn-lg ladda-button" data-style="expand-left"><span class="ladda-label">Validate</span></button>
+          </div>
+        </div>
+      </form>
+      <div class="row my-3">
+        <div class="col-sm-9 offset-sm-2">
+          <div id="alert"></div>
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-sm-9 offset-sm-2">
+          <div id="errors">
+            <ol id="error-list"></ol>
+          </div>
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-sm-9 offset-sm-2">
+          <div id="source"></div>
+        </div>
+      </div>
+      <!--
+      <div class="row my-3">
+        <div class="col-md-6 offset-md-1">
+          <hr>
+          <h4>About CSL Style and Locale Validator</h4>
+          <p>The CSL Style and Locale Validator checks <a href="https://citationstyles.org/" target="_blank">Citation Style Language (CSL)</a> styles and locale files against the
+            <a href="https://github.com/citation-style-language/schema/" target="_blank">CSL schema</a> and can be used to prepare your file for
+            <a href="https://github.com/citation-style-language/styles/blob/master/CONTRIBUTING.md#guide-to-submitting-csl-styles-and-csl-locales" target="_blank">submission</a> to our
+            <a href="https://github.com/citation-style-language/styles/" target="_blank">style repository</a> or <a href="https://github.com/citation-style-language/locales/" target="_blank">locale repository</a>.
+            For style submissions, once your CSL style validates without errors, please run your style through our <a href="https://formatter.citationstyles.org/" target="_blank">CSL Style Formatter</a>.</p>
+        </div>
+      </div>
+        -->
+    </div>
+  </main>
+
+  <footer class="footer mt-auto py-3">
+    <div class="container-fluid">
+      <span class="text-muted">Created by <a href="https://rintze.zelle.me/" target="_blank">Rintze M. Zelle</a>
+        Powered by <a href="https://validator.w3.org/nu/">Nu HTML Checker</a> and GitHub Pages. <a href="https://github.com/citation-style-language/csl-validator">Source code</a> on GitHub.</span>
+    </div>
+  </footer>
+
+  <script>
+    $().ready(function() {
+      CSLValidator.init();
+    });
+  </script>
+</body>
+
+</html>
