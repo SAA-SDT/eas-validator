@@ -114,6 +114,8 @@ var CSLValidator = (function() {
         if (schemaVersion == 'EAD3') {
           var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/EAD3/master/ead3.rng";
           schemaURL += " " + "https://raw.githubusercontent.com/SAA-SDT/EAD3/master/schematron/ead3.sch";
+        } else if (schemaVersion == 'EAD2') {
+          var schemaURL = "https://www.loc.gov/ead/ead.rng";
         } else if (schemaVersion == '2.0') {
           var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/eac-cpf-schema/development/xml-schemas/eac-cpf/cpf.rng";
         } else if (schemaVersion == '1.1') {
