@@ -112,10 +112,9 @@ var CSLValidator = (function() {
         var schemaVersion = $('#schema-version').val();
         // hardcoding this for the time being.
         if (schemaVersion == 'EAD3') {
-          var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/EAD3/master/ead3.rng";
-          schemaURL += " " + "https://raw.githubusercontent.com/SAA-SDT/EAD3/master/schematron/ead3.sch";
-        } else if (schemaVersion == 'EAD2') {
-          var schemaURL = "https://www.loc.gov/ead/ead.rng";
+          var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/EAD3/v1.1.1/ead3.rng";
+        } else if (schemaVersion == 'EAD2002') {
+          var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/EAD2002/issue/1/ead.rng";
         } else if (schemaVersion == '2.0') {
           var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/eac-cpf-schema/development/xml-schemas/eac-cpf/cpf.rng";
         } else if (schemaVersion == '1.1') {
