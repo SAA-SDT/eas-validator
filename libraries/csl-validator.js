@@ -116,7 +116,7 @@ var CSLValidator = (function() {
         } else if (schemaVersion == 'EAD2002') {
           var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/EAD2002/issue/1/ead.rng";
         } else if (schemaVersion == '2.0') {
-          var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/eas-validator/gh-pages/rnc/eac.rnc https://raw.githubusercontent.com/SAA-SDT/eac-cpf-schema/release/v2.0-draft/xml-schemas/eac-cpf/schematron/eac.sch";
+          var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/eac-cpf-schema/release/v2.0-draft/xml-schemas/eac-cpf/eac.rng";
         } else if (schemaVersion == '1.1') {
           var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/eac-cpf-schema/master/cpf.rng";
         } else if (schemaVersion == '1.0') {
