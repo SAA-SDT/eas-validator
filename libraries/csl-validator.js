@@ -114,7 +114,7 @@ var CSLValidator = (function() {
         if (schemaVersion == 'EAD3') {
           var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/EAD3/v1.1.1/ead3.rng";
         } else if (schemaVersion == 'EAD2002') {
-          var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/EAD2002/issue/1/ead.rng";
+          var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/EAD2002/release/eas-validator/ead.rng";
         } else if (schemaVersion == '2.0') {
           var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/eac-cpf-schema/release/v2.0-draft/xml-schemas/eac-cpf/eac.rng";
         } else if (schemaVersion == '1.1') {
