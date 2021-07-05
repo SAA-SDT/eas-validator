@@ -118,7 +118,7 @@ var CSLValidator = (function() {
         } else if (schemaVersion == '2.0') {
           var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/eac-cpf-schema/release/v2.0-draft/xml-schemas/eac-cpf/eac.rng";
         } else if (schemaVersion == '1.1') {
-          var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/eac-cpf-schema/master/cpf.rng";
+          var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/eac-cpf-schema/b244dc6d8880eddac6dbec4f47dfd7dc44d078fd/cpf.rng";
         } else if (schemaVersion == '1.0') {
           var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/eac-cpf-schema/pre-revision-files/cpf.rng";
         }
