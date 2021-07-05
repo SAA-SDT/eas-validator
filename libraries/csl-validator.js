@@ -112,7 +112,7 @@ var CSLValidator = (function() {
         var schemaVersion = $('#schema-version').val();
         // hardcoding this for the time being.
         if (schemaVersion == 'EAD3') {
-          var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/EAD3/v1.1.1/ead3.rng";
+          var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/EAD3/release/eas-validator/ead3.rng";
         } else if (schemaVersion == 'EAD2002') {
           var schemaURL = "https://raw.githubusercontent.com/SAA-SDT/EAD2002/release/eas-validator/ead.rng";
         } else if (schemaVersion == '2.0') {
